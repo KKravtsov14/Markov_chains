@@ -1,12 +1,14 @@
+# Text generator for English
+# Dvelopers: Kravtsov - 80%
 import random as r
 
 
-def reader():
+def reader(file):
     slovar = {}
     all_words = []
     s_cr = ''
     punctuation = ['.', ',', '!', '?', 1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
-    with open('text.txt', 'r') as t:
+    with open(file, 'r') as t:
         for i in t:
             s = i
             s += ' '
@@ -66,3 +68,10 @@ def generator(slovar, n):
             sentens += '.'
 
         print(sentens)
+
+def main():
+    print('Программа генерирует предложения английского языка')
+    print('Введите название файла(полное, если он хранится в другой папке)')
+    generator(reader(str(input())), int(input('Введите количество предложений, которое нужно сгенерировать')))
+
+main()
