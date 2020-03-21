@@ -1,34 +1,36 @@
 # Text generator for English
-# Dvelopers: Kravtsov - 80%
+# Developers: Kravtsov - 80%
+#             Mikhailov - 20%
+
 import random as r
 
 
 def reader(file):
     slovar = {}
     all_words = []
-    s_cr = ''
+    blank_character = ''
     punctuation = ['.', ',', '!', '?', 1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
-    with open(file, 'r') as t:
-        for i in t:
-            s = i
-            s += ' '
+    with open(file, 'r') as text:
+        for i in text:
+            working_line = i
+            working_line += ' '
 
-            for j in range(len(s)):
-                if s[j].isalpha() or s[j] in punctuation:
-                    s_cr += s[j]
+            for j in range(len(working_line )):
+                if working_line [j].isalpha() or working_line [j] in punctuation:
+                    blank_character += working_line [j]
 
-                elif s_cr != '' and slovar.get(s_cr, 0) == 0:
-                    slovar[s_cr] = list([])
-                    all_words.append(s_cr)
-                    s_cr = ''
+                elif blank_character != '' and slovar.get(blank_character, 0) == 0:
+                    slovar[blank_character] = list([])
+                    all_words.append(blank_character)
+                    blank_character = ''
 
-                elif slovar.get(s_cr, 0) != 0:
-                    all_words.append(s_cr)
-                    s_cr = ''
+                elif slovar.get(blank_character, 0) != 0:
+                    all_words.append(blank_character)
+                    blank_character = ''
 
     for j in range(len(all_words) - 1):
-        otv = slovar[all_words[j]]
-        otv = otv.append(all_words[j + 1])
+        key_generator = slovar[all_words[j]]
+        key_generator = key_generator.append(all_words[j + 1])
     return slovar
 
 
